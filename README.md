@@ -1,6 +1,6 @@
-# api-python
+### api-python
 
-## Description
+### Description
 Cette API Flask permet de gérer des utilisateurs, y compris l'enregistrement, la connexion et la mise à jour des informations utilisateur.
 
 ### Fonctionnalités :
@@ -10,34 +10,29 @@ Cette API Flask permet de gérer des utilisateurs, y compris l'enregistrement, l
 
 ---
 
- Prérequis
-Avant de commencer, assurez-vous d'avoir installé les éléments suivants sur votre machine :
+### Prérequis
+Avant de commencer, installez les éléments suivants :
 - Python 3.x
 - Flask
 - Flask-JWT-Extended
 - Flask-Migrate
-- Une base de données MySQL ou PostgreSQL (gérée via SQLAlchemy)
+- Une base de données MySQL ou PostgreSQL
 
 ---
 
- Installation
+### Installation
 
-1. Clonez le projet sur votre machine locale :
-   ```bash
-   git clone https://github.com/votre-repo/api-python.git
-   cd api-python
+1. Clonez le projet sur votre machine locale
 
 2. Créez et activez un environnement virtuel :
 
 bash
-Copier le code
 python3 -m venv env
 source env/bin/activate  # Sous Windows : env\Scripts\activate
 
 3. Installez les dépendances requises :
 
 bash
-Copier le code
 pip install -r requirements.txt
 
 4. Configurez la base de données :
