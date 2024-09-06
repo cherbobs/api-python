@@ -32,14 +32,10 @@ def register():
 # Route de connexion
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()  # Récupérer les données du corps de la requête
-    mongo = current_app.extensions['pymongo']  # Accéder à l'instance MongoDB
-
-    # Vérifier si l'utilisateur existe
-    user = mongo.db.users.find_one({'username': data['username']})
-    if not user or not check_password_hash(user['password'], data['password']):
-        return jsonify({"msg": "Bad username or password"}), 401
-
-    # Créer un token JWT pour l'utilisateur authentifié
-    access_token = create_access_token(identity=user['username'])
+    data = request.get_json()
+    user = User.query.filter_by(username=data['username']).first()
+    if not user or not check_password_hash(user.password, data['password']):
+        return jsonify({'message': 'Invalid credentials'}), 401
+    
+    access_token = create_access_token(identity={'username': user.username})
     return jsonify(access_token=access_token), 200
