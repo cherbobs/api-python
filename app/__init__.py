@@ -1,22 +1,29 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask import Flask, render_template
+from flask_pymongo import PyMongo
 from flask_jwt_extended import JWTManager
-from .models import db  # Assure-toi que db est bien importé depuis models
-from .auth import auth_bp
-from .routes import api_bp
+
+# Initialisation de PyMongo
+mongo = PyMongo()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('config.Config')
+    
+    # Configuration MongoDB
+    app.config["MONGO_URI"] = "mongodb+srv://Ismael:y3HqPgjjmLnTaKdT@clusterlocal.unengax.mongodb.net/?retryWrites=true&w=majority&appName=ClusterLocal"
 
-    db.init_app(app)
+    # Initialisation de PyMongo avec l'application Flask
+    mongo.init_app(app)
+
+    # Initialisation de JWTManager
     JWTManager(app)
 
-    # Initialisation de Flask-Migrate
-    migrate = Migrate(app, db)
-
+    # Importation des blueprints
+    from .auth import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
-    app.register_blueprint(api_bp, url_prefix='/api')
+
+    # Page d'accueil
+    @app.route('/')
+    def home():
+        return render_template('index.html')
 
     return app
