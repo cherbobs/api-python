@@ -7,6 +7,7 @@ Cette API Flask permet de gérer des utilisateurs, y compris l'enregistrement, l
 - Enregistrement d'un utilisateur : Crée un nouvel utilisateur avec un nom d'utilisateur, un email et un mot de passe.
 - Connexion : Génère un token JWT pour les utilisateurs qui se connectent avec succès.
 - Mise à jour des informations utilisateur : Permet de mettre à jour les informations d'un utilisateur existant (nom d'utilisateur, email, mot de passe).
+- Suppression d'un utilisateur** : Permet de supprimer un utilisateur de la base de données.
 
 ---
 
@@ -50,7 +51,7 @@ flask run
 
 7. Endpoints
 
-Inscription d'un utilisateur :
+# Inscription d'un utilisateur :
 URL : /auth/register
 Méthode : POST
 Données d'entrée :
@@ -61,7 +62,7 @@ Données d'entrée :
   }
 
 
-Connexion d'un utilisateur :
+# Connexion d'un utilisateur :
 URL : /auth/login
 Méthode : POST
 Données d'entrée :
@@ -70,7 +71,7 @@ Données d'entrée :
   "password": "mot_de_passe"
   }
 
-Mise à jour des informations d'un utilisateur :
+# Mise à jour des informations d'un utilisateur :
 URL : /users/<user_id>
 Méthode : PUT
 Headers : Authorization: Bearer <mon_token>
@@ -81,6 +82,12 @@ Données d'entrée pour tester :
   "email": "nv_email",
   "password": "nv_mot_de_passe"
 }
+
+# Suppression d'un utilisateur
+URL : /users/<user_id>
+Méthode : DELETE
+Headers : Authorization: Bearer <votre_token_jwt>
+Description : Supprime l'utilisateur correspondant à l'user_id.
 
 
 Tests
