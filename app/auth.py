@@ -21,5 +21,6 @@ def login():
     if not user or not check_password_hash(user.password, data['password']):
         return jsonify({'message': 'Invalid credentials'}), 401
     
-    access_token = create_access_token(identity={'username': user.username})
+    # Inclure l'ID de l'utilisateur dans le token JWT
+    access_token = create_access_token(identity={'username': user.username, 'user_id': user.id})
     return jsonify(access_token=access_token), 200
