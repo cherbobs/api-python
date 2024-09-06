@@ -86,7 +86,7 @@ Données d'entrée pour tester :
 # Suppression d'un utilisateur
 URL : /users/<user_id>
 Méthode : DELETE
-Headers : Authorization: Bearer <votre_token_jwt>
+Headers : Authorization: Bearer <mon_token>
 Description : Supprime l'utilisateur correspondant à l'user_id.
 
 
